@@ -11,6 +11,10 @@ export const useAppStore = defineStore('app', () => {
         height: 800,
         width: 500
     })
+    const poweroff_pro = ref({
+        message: "Ashborn arc is powering of",
+        isPoweringOff: false,
+    })
     const showOptions = ref(false)
     const applications: Ref<IProgram[]> = shallowRef<IProgram[]>([
         {
@@ -43,6 +47,7 @@ export const useAppStore = defineStore('app', () => {
 
     return {
         isRestarted,
+        poweroff_pro,
         superMenu,
         notifMenu,
         applications,

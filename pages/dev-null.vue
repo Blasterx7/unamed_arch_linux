@@ -2,11 +2,18 @@
 const router = useRouter()
 const appStore = useAppStore()
 
-if (appStore.isRestarted) {
-    router.push('session')
-}
+setTimeout(() => {
+    if (appStore.isRestarted) {
+        router.push('session')
+    }
+}, 3000);
 function poweron() {
-    router.push('session')
+    appStore.poweroff_pro.message = "Ashborn arc is powering on"
+    appStore.poweroff_pro.isPoweringOff = true
+    setTimeout(() => {
+        appStore.poweroff_pro.isPoweringOff = false
+        router.push('session')
+    }, 2000);
 }
 </script>
 

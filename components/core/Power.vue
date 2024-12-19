@@ -13,15 +13,22 @@ const poweropt = ref([
     {
         name: "Restart",
         action: () => {
-            appStore.isRestarted = true
-            router.push('/dev-null')
+            appStore.poweroff_pro.isPoweringOff = true
+            setTimeout(() => {
+                appStore.isRestarted = true
+                appStore.poweroff_pro.isPoweringOff = false
+                router.push('/dev-null')
+            }, 2000);
         }
     },
     {
         name: "Poweroff",
         action: () => {
-            alert("Poweroff the app")
-            router.push("/dev-null")
+            appStore.poweroff_pro.isPoweringOff = true
+            setTimeout(() => {
+                router.push("/dev-null")
+                appStore.poweroff_pro.isPoweringOff = false
+            }, 2000);
         }
     }
 ])
