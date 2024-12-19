@@ -21,13 +21,13 @@ onMounted(() => {
         indeterminate
       ></v-progress-circular>
     </div>
-    <div class="hidden xl:block">
+    <div class="block max-sm:hidden">
       <NuxtLoadingIndicator />
       <NuxtLayout>
         <NuxtPage />
       </NuxtLayout>
     </div>
-    <div class="xl:hidden text-2xl font-bold px-4 text-center h-screen flex flex-col justify-center items-center">
+    <div class="xl:hidden block text-2xl font-bold px-4 text-center h-screen flex flex-col justify-center items-center">
       Cette application n'est pas disponible sur mobile. Veuillez l'ouvrir sur un ordinateur.
       (This application is not available on mobile. Please open it on a computer.)
     </div>

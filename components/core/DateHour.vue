@@ -21,7 +21,7 @@ onMounted(() => {
 
 <template>
     <div class="flex justify-between font-bold w-1/4 px-3 bg-secondary-100 text-lg rounded-lg">
-        <div class="my-auto p-2 select-none" v-ripple>
+        <div class="my-auto p-2 select-none text-sm" v-ripple>
             {{ timer.hour }} | {{ timer.date }}
         </div>
         <div class="my-auto p-2 rounded-lg" v-ripple>
