@@ -1,0 +1,33 @@
+<script setup lang="ts">
+const tabs = ref([
+    {
+        name: 'Background',
+        icon: 'mdi-wallpaper',
+        component: 'SBackground',
+    },
+    {
+        name: 'About',
+        icon: 'mdi-information',
+        component: 'SAbout'
+    },
+])
+
+const currentTab = ref('SBackground')
+
+function setWindow(tab: string)
+{
+    currentTab.value = tab
+}
+</script>
+<template>
+    <div class="flex w-full">
+        <div class="w-1/3 px-2 space-y-4 py-4">
+            <v-list class="bg-transparent">
+                <v-list-item @click="setWindow(tab.component)" :prepend-icon="tab.icon" v-for="tab in tabs" class="text-left w-full" variant="text">
+                    {{ tab.name }}
+                </v-list-item>
+            </v-list>
+        </div>
+        <component class="h-full overflow-auto select-none" :is="currentTab" />
+    </div>
+</template>
