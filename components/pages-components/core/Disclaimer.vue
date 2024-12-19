@@ -1,3 +1,12 @@
+<script setup lang="ts">
+const router = useRouter()
+
+function login()
+{
+    router.push('/session')
+}
+</script>
+
 <template>
     <div class="flex flex-col justify-center items-center h-screen w-full">
         <div class="text-4xl font-bold text-gray-200 my-5">
@@ -16,7 +25,7 @@
                 </template>
             </v-checkbox-btn>
         </div>
-        <div class="bg-primary-200 px-20 select-none text-xl py-4 rounded-lg text-gray-200 mt-4 cursor-pointer">
+        <div @click="login()" class="bg-primary-200 px-20 select-none text-xl py-4 rounded-lg text-gray-200 mt-4 cursor-pointer">
             Continue
         </div>
     </div>

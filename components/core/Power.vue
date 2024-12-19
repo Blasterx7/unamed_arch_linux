@@ -1,25 +1,27 @@
 <script setup lang="ts">
 
 const router = useRouter()
+const appStore = useAppStore()
 
 const poweropt = ref([
     {
         name: "Suspend",
         action: () => {
-            alert("Supended the app")
+            router.push('/session')
         }
     },
     {
         name: "Restart",
         action: () => {
-            alert("Restarted the app")
+            appStore.isRestarted = true
+            router.push('/dev-null')
         }
     },
     {
         name: "Poweroff",
         action: () => {
             alert("Poweroff the app")
-            router.push("/")
+            router.push("/dev-null")
         }
     }
 ])

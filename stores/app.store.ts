@@ -6,6 +6,7 @@ export const useAppStore = defineStore('app', () => {
     const superMenu = shallowRef(false)
     const notifMenu = shallowRef(false)
     const search = ref('')
+    const isRestarted = ref(false)
     const appSize = ref({
         height: 800,
         width: 500
@@ -41,6 +42,7 @@ export const useAppStore = defineStore('app', () => {
     })
 
     return {
+        isRestarted,
         superMenu,
         notifMenu,
         applications,

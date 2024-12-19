@@ -3,7 +3,7 @@ const password = ref('')
 const router = useRouter()
 
 function poweroff() {
-    router.push('/main/poweroff')
+    router.push('/dev-null')
 }
 
 
@@ -24,7 +24,7 @@ function go() {
     }
     setTimeout(() => {
         if (password.value === 'ashborn') {
-            router.push('/main/gnome')
+            router.push('/gnome')
         }
         else {
             error.value = 'Invalid password'
@@ -41,8 +41,8 @@ function go() {
                 <div class="text-4xl font-bold text-gray-200 my-5">
                     Welcome to Ashborn Arc
                 </div>
-                <div class="text-xl text-gray-200 mt-4 w-2/3 text-center">
-                    Please login to continue
+                <div class="text-xl text-gray-200 mt-4 w-5/6 text-center">
+                    Please login to continue. The password is ashborn
                 </div>
             </div>
             <div class="w-1/2">
@@ -50,14 +50,17 @@ function go() {
                     Ash
                 </div>
                 <div>
-                    <v-text-field color="purple" :error-messages="error" :rules="ruler" v-model="password" :disabled="load.submit"
-                        :loading="load.submit" type="password" class="text-white" label="Password">
-                        <template #append-inner>
-                            <v-btn variant="plain" @click="go" class="bg-transparent">
-                                <v-icon>mdi-chevron-right</v-icon>
-                            </v-btn>
-                        </template>
-                    </v-text-field>
+                    <v-form @submit.prevent="go">
+                        <v-text-field hint="ashborn" color="purple" :error-messages="error" :rules="ruler"
+                            v-model="password" :disabled="load.submit" :loading="load.submit" type="password"
+                            class="text-white" label="Password">
+                            <template #append-inner>
+                                <v-btn variant="plain" @click="go" class="bg-transparent">
+                                    <v-icon>mdi-chevron-right</v-icon>
+                                </v-btn>
+                            </template>
+                        </v-text-field>
+                    </v-form>
                 </div>
             </div>
             <div @click="poweroff()"
