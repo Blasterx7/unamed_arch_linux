@@ -21,7 +21,7 @@ onMounted(() => {
         indeterminate
       ></v-progress-circular>
     </div>
-    <div class="block max-sm:hidden">
+    <div class="hidden xl:block">
       <NuxtLoadingIndicator />
       <NuxtLayout>
         <NuxtPage />
