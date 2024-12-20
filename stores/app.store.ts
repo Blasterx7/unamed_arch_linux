@@ -33,6 +33,11 @@ export const useAppStore = defineStore('app', () => {
             components: 'TaskManager',
         },
         {
+            name: 'App editor',
+            icon: 'mdi-code-braces',
+            components: 'DCode',
+        },
+        {
             name: 'Settings',
             icon: 'mdi-cog',
             components: 'Settings',

@@ -25,6 +25,11 @@ interface ITe {
     pro: IProcess[];
 }
 
+interface ICode {
+    id?: string;
+    appName: string;
+}
+
 export type {
     IProcess,
     IProgram,

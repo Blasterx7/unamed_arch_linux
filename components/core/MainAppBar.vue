@@ -15,7 +15,7 @@ function showOption(option: ITe) {
 </script>
 
 <template>
-    <div class="w-1/4 flex px-3 py-2 space-x-3  bg-secondary-100 bg-opacity-45 rounded-md">
+    <div class="w-1/4 flex px-3 py-2 space-x-3  bg-secondary-100 rounded-md">
         <div class="p-2 rounded-lg flex h-max my-auto" v-ripple>
             <SuperIcon @click="toogleModal()" />
         </div>
