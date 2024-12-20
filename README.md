@@ -23,7 +23,7 @@ pnpm dev # or npm run dev
 
 ## License
 
-<!-- add licence that make the project open source but permit me in the future to use it to generate money -->
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contributing
 
@@ -42,3 +42,5 @@ If you need help with the project, you can open an issue or contact me on discor
 - [ ] Evolve terminal
 - [ ] Add more settings
 - [ ] Add more apps
+- [ ] Testing the project
+- [ ] Add more features
