@@ -27,9 +27,6 @@ export default defineNuxtConfig({
 
     }
   },
-  primevue: {
-    autoImport: true,
-  },
   fileStorage: {
     mount: './public/uploads',
   },

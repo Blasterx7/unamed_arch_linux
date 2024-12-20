@@ -37,7 +37,7 @@ const poweropt = ref([
 <template>
     <v-menu location="end">
         <template v-slot:activator="{ props }">
-            <v-btn icon="mdi-power" v-bind="props">
+            <v-btn variant="plain" icon="mdi-power" v-bind="props">
 
             </v-btn>
         </template>
