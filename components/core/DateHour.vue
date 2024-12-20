@@ -11,6 +11,15 @@ const updateTime = () => {
     timer.value.hour = date.toLocaleTimeString()
 }
 
+const hour = computed(() => {
+    // kee onlny hour in format 00:00
+    return timer.value.hour.split(" ")[0].split(":").slice(0, 2).join(":")
+})
+
+const date = computed(() => {
+    return timer.value.date.split("-").slice(0, 2).join("/")
+})
+
 onMounted(() => {
     updateTime()
     setInterval(() => {
@@ -22,7 +31,7 @@ onMounted(() => {
 <template>
     <div class="flex justify-between font-bold w-1/4 px-3 bg-secondary-100 text-lg rounded-lg">
         <div class="my-auto p-2 select-none text-sm" v-ripple>
-            {{ timer.hour }} | {{ timer.date }}
+            {{ hour }} | {{ date }}
         </div>
         <div class="my-auto p-2 rounded-lg" v-ripple>
             <UtilsIcon />
