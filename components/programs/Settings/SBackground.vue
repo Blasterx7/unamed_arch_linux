@@ -59,9 +59,10 @@ function changeImg(bg: { src: string, text: string }) {
 
 <template>
     <div class="grid grid-cols-3 gap-4 p-4 w-full">
-        <v-card height="300" v-for="img in imgs" @click="changeImg(img)" :key="img.text" class="rounded-lg" width="100%"
-            color="transparent">
-            <v-img height="250" :src="img.src" cover></v-img>
+        <v-card
+v-for="img in imgs" :key="img.text" height="300" class="rounded-lg" width="100%" color="transparent"
+            @click="changeImg(img)">
+            <v-img height="250" :src="img.src" cover/>
             <v-card-text>
                 <div class="flex justify-between">
                     <div class="text-center">{{ img.text }}</div>

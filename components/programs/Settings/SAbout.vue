@@ -16,17 +16,17 @@
                 <a href="http://github.com/Georges987" target="_blank">
                     <v-icon
                       icon="mdi-github"
-                    ></v-icon> Github
+                    /> Github
                 </a>
                 <a href="http://github.com/Georges987" target="_blank">
                     <v-icon
                       icon="mdi-arch"
-                    ></v-icon> Personal page
+                    /> Personal page
                 </a>
                 <a href="http://github.com/Georges987" target="_blank">
                     <v-icon
                       icon="mdi-linkedin"
-                    ></v-icon> H LinkedIn
+                    /> H LinkedIn
                 </a>
             </div>
         </div>

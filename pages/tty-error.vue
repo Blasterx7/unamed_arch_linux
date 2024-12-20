@@ -15,14 +15,15 @@
                 <pre>{{ output }}</pre>
             </div>
         </div>
-        <div class="flex space-x-2" v-if="load">
+        <div v-if="load" class="flex space-x-2">
             <div>
                 ashborn@overlord_$
             </div>
 
-            <textarea autofocus v-model="command" @keyup.enter="executeCommand"
-                class="w-full bg-black text-green-400 border-none focus:outline-none resize-none" rows="1"
-                placeholder="|"></textarea>
+            <textarea
+v-model="command" autofocus class="w-full bg-black text-green-400 border-none focus:outline-none resize-none"
+                rows="1" placeholder="|"
+                @keyup.enter="executeCommand"/>
         </div>
     </div>
 </template>

@@ -1,3 +1,3 @@
 <template>
-    <NuxtLayout name="power"></NuxtLayout>
+    <NuxtLayout name="power"/>
 </template>

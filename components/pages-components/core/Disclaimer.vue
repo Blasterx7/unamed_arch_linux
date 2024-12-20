@@ -20,12 +20,12 @@ function login()
         </div>
         <div class="mt-16 text-xl text-white">
             <v-checkbox-btn>
-                <template #label="slotProps">
+                <template #label>
                     I understand these risks and wish to continue.
                 </template>
             </v-checkbox-btn>
         </div>
-        <div @click="login()" class="bg-primary-200 px-20 select-none text-xl py-4 rounded-lg text-gray-200 mt-4 cursor-pointer">
+        <div class="bg-primary-200 px-20 select-none text-xl py-4 rounded-lg text-gray-200 mt-4 cursor-pointer" @click="login()">
             Continue
         </div>
     </div>

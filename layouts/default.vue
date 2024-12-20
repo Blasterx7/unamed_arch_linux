@@ -1,6 +1,6 @@
 <template>
     <div id="base" class="h-screen relative text-black flex flex-col w-full bg-black">
-        <slot></slot>
+        <slot/>
     </div>
 </template>
 

@@ -58,29 +58,29 @@ function reduce() {
 </script>
 
 <template>
-    <VueDraggableResizable @dblclick="toogleOnFocus(process.id)" :w="size.width" :h="size.height"
-    :parent="true">
+    <VueDraggableResizable
+:w="size.width" :h="size.height" :parent="true"
+    @dblclick="toogleOnFocus(process.id)">
         <v-card height="100%" width="100%" color="black">
             <div class="overflow-auto select-none">
                 <div class="flex justify-between py-2 px-4 col-span-2">
                     <div class="flex space-x-4">
-                        <div @click="proStore.removeProcess(process.id)"
-                            class="rounded-full bg-red-500 transition-colors ease-in-out duration-300 hover:bg-red-700 h-4 w-4">
-                        </div>
-                        <div @click="reduce()"
-                            class="rounded-full bg-yellow-500 transition-colors ease-in-out duration-300 hover:bg-yellow-700 h-4 w-4">
-                        </div>
                         <div
-                            @click="toogleSize()"
-                            class="rounded-full bg-green-500 transition-colors ease-in-out duration-300 hover:bg-green-700 h-4 w-4">
-                        </div>
+class="rounded-full bg-red-500 transition-colors ease-in-out duration-300 hover:bg-red-700 h-4 w-4"
+                            @click="proStore.removeProcess(process.id)"/>
+                        <div
+class="rounded-full bg-yellow-500 transition-colors ease-in-out duration-300 hover:bg-yellow-700 h-4 w-4"
+                            @click="reduce()"/>
+                        <div
+                            class="rounded-full bg-green-500 transition-colors ease-in-out duration-300 hover:bg-green-700 h-4 w-4"
+                            @click="toogleSize()"/>
                     </div>
                     <div class="font-bold mr-4">
                         {{ process.name }}
                     </div>
                 </div>
             </div>
-            <Component class="h-full overflow-auto select-none" :is="process.program.components" />
+            <Component :is="process.program.components" class="h-full overflow-auto select-none" />
         </v-card>
     </VueDraggableResizable>
 </template>

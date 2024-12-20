@@ -3,6 +3,5 @@ const codeStore = useCodeStore()
 </script>
 
 <template>
-    <div v-html="codeStore.codeTest">
-    </div>
+    <div v-html="codeStore.codeTest"/>
 </template>

@@ -12,14 +12,14 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="absolute z-20 flex flex-col justify-center items-center text-4xl font-bold bg-black h-full w-full" v-if="appStore.poweroff_pro.isPoweringOff">
+    <div v-if="appStore.poweroff_pro.isPoweringOff" class="absolute z-20 flex flex-col justify-center items-center text-4xl font-bold bg-black h-full w-full">
       <div class="mb-10">
         {{ appStore.poweroff_pro.message }}
       </div>
       <v-progress-circular
         v-model="circularModel"
         indeterminate
-      ></v-progress-circular>
+      />
     </div>
     <div class="hidden lg:block">
       <NuxtLoadingIndicator />

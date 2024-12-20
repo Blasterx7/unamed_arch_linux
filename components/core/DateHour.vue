@@ -30,13 +30,13 @@ onMounted(() => {
 
 <template>
     <div class="flex justify-between font-bold w-1/4 px-3 bg-secondary-100 text-lg rounded-lg">
-        <div class="my-auto p-2 select-none text-sm" v-ripple>
+        <div v-ripple class="my-auto p-2 select-none text-sm">
             {{ hour }} | {{ date }}
         </div>
-        <div class="my-auto p-2 rounded-lg" v-ripple>
+        <div v-ripple class="my-auto p-2 rounded-lg">
             <UtilsIcon />
         </div>
-        <div @click="notif_dialog = !notif_dialog" class="my-auto rounded-full select-none" v-ripple>
+        <div v-ripple class="my-auto rounded-full select-none" @click="notif_dialog = !notif_dialog">
             <div class="absolute text-sm text-secondary-100 mx-2 my-1.5">
                 52
             </div>

@@ -8,10 +8,11 @@
                     </div>
                 </v-avatar>
                 <v-form @submit.prevent="go">
-                    <v-text-field :error-messages="error" :rules="ruler" v-model="password" :disabled="load.submit"
+                    <v-text-field
+v-model="password" :error-messages="error" :rules="ruler" :disabled="load.submit"
                         :loading="load.submit" type="password" class="text-white" label="Password">
                         <template #append-inner>
-                            <v-btn variant="plain" @click="go" class="bg-transparent">
+                            <v-btn variant="plain" class="bg-transparent" @click="go">
                                 <v-icon>mdi-chevron-right</v-icon>
                             </v-btn>
                         </template>

@@ -41,8 +41,9 @@ function deleteP(id: string) {
                     - Tâche secondaires
                 </div>
                 <div v-if="procesStore.processes.length > 0">
-                    <div class="py-4 flex justify-between my-2 hover:bg-primary-100 transition-colors duration-300 ease-in-out"
-                        v-for="p in procesStore.processes" :key="p.id">
+                    <div
+v-for="p in procesStore.processes"
+                        :key="p.id" class="py-4 flex justify-between my-2 hover:bg-primary-100 transition-colors duration-300 ease-in-out">
                         <div class="my-auto">
                             {{ p.name }}
                         </div>
@@ -67,7 +68,7 @@ function deleteP(id: string) {
                     Etes-vous sur de vouloir terminer ce processus ?
                 </v-card-title>
                 <v-card-actions>
-                    <v-spacer></v-spacer>
+                    <v-spacer/>
                     <v-btn @click="confirm = false">
                         Non
                     </v-btn>

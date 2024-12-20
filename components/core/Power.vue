@@ -36,14 +36,12 @@ const poweropt = ref([
 
 <template>
     <v-menu location="end">
-        <template v-slot:activator="{ props }">
-            <v-btn variant="plain" icon="mdi-power" v-bind="props">
-
-            </v-btn>
+        <template #activator="{ props }">
+            <v-btn variant="plain" icon="mdi-power" v-bind="props"/>
         </template>
 
         <v-list>
-            <v-list-item @click="item.action" v-for="(item, index) in poweropt" :key="index">
+            <v-list-item v-for="(item, index) in poweropt" :key="index" @click="item.action">
                 <v-list-item-title>{{ item.name }}</v-list-item-title>
             </v-list-item>
         </v-list>

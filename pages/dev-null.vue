@@ -23,7 +23,7 @@ function poweron() {
             <div class="my-2 text-4xl">
                 System offline : Power on ?
             </div>
-            <v-btn @click="poweron()" size="large" class="my-2 w-full" variant="text">
+            <v-btn size="large" class="my-2 w-full" variant="text" @click="poweron()">
                 <v-icon size="large">
                     mdi-power
                 </v-icon>

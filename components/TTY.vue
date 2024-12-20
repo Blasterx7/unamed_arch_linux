@@ -1,19 +1,17 @@
 <template>
   <div class="bg-[#1e1e1e] text-[#f8f8f2] font-mono rounded-[8px] p-[1rem] max-w-[600px] m-[1rem] shadow-[0 4px 6px rgba(0, 0, 0, 0.1)]">
     <div class="flex justify-start p-[0.5rem] bg-[#2c2c2c] rounded-[6px 6px 0 0]">
-      <span class="circle red"> 
-        
-      </span>
-      <span class="circle yellow"></span>
-      <span class="circle green"></span>
+      <span class="circle red"/>
+      <span class="circle yellow"/>
+      <span class="circle green"/>
     </div>
     <div class="tty-body">
       <div v-for="(line, index) in output" :key="index" class="tty-line">
         <span>{{ line }}</span>
       </div>
-      <form @submit.prevent="handleCommand" class="flex space-x-2">
+      <form class="flex space-x-2" @submit.prevent="handleCommand">
         <span class="tty-prompt">$</span>
-        <input v-model="input" class="tty-input" type="text" placeholder="Enter command..." autofocus />
+        <input v-model="input" class="tty-input" type="text" placeholder="Enter command..." autofocus >
       </form>
     </div>
   </div>

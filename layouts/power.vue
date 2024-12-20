@@ -17,10 +17,10 @@ onMounted(() => {
             <h1 class="text-4xl mb-10 font-bold text-white">Powering off...</h1>
         </div>
         <v-progress-circular
+          v-model="progress"
           :indeterminate="true"
           size="64"
-          v-model="progress"
-        ></v-progress-circular>
+        />
     </div>
 </template>
 

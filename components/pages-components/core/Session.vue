@@ -51,11 +51,12 @@ function go() {
                 </div>
                 <div>
                     <v-form @submit.prevent="go">
-                        <v-text-field hint="ashborn" color="purple" :error-messages="error" :rules="ruler"
-                            v-model="password" :disabled="load.submit" :loading="load.submit" type="password"
+                        <v-text-field
+v-model="password" hint="ashborn" color="purple" :error-messages="error"
+                            :rules="ruler" :disabled="load.submit" :loading="load.submit" type="password"
                             class="text-white" label="Password">
                             <template #append-inner>
-                                <v-btn variant="plain" @click="go" class="bg-transparent">
+                                <v-btn variant="plain" class="bg-transparent" @click="go">
                                     <v-icon>mdi-chevron-right</v-icon>
                                 </v-btn>
                             </template>
@@ -63,8 +64,9 @@ function go() {
                     </v-form>
                 </div>
             </div>
-            <div @click="poweroff()"
-                class="bg-primary-200 bg-opacity-20 px-20 select-none text-xl py-4 rounded-lg text-gray-200 mt-4 cursor-pointer">
+            <div
+class="bg-primary-200 bg-opacity-20 px-20 select-none text-xl py-4 rounded-lg text-gray-200 mt-4 cursor-pointer"
+                @click="poweroff()">
                 Shutdown
             </div>
         </div>

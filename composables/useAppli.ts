@@ -49,6 +49,7 @@ export const useApplication = () => {
         const current = proStore.processes.findIndex((process) => process.id === id)
         const currentProcess = proStore.currentProcess
         proStore.processes.forEach((process, index) => {
+            process.key = index
             if (process.id === id) {
                 proStore.processes[current] = currentProcess ?? process
                 proStore.setCurrentProcess(process)

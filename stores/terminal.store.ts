@@ -21,9 +21,9 @@ export const useTerminalStore = defineStore('terminal', () => {
         "git": () => createStdout("Git is not installed"),
     })
 
-    const listCmd = computed(() => {
-        return Object.keys(commands.value)
-    })
+    // const listCmd = computed(() => {
+    //     return Object.keys(commands.value)
+    // })
 
     return {
         prompt,

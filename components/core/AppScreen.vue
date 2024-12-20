@@ -15,7 +15,8 @@ const error = {
         <template v-for="process in proStore.processes" :key="process.id">
             <Window v-if="process.status !== TStatus.MIN" :process="process" />
         </template>
-        <Window v-if="proStore.currentProcess && proStore.currentProcess.status !== TStatus.MIN"
+        <Window
+v-if="proStore.currentProcess && proStore.currentProcess.status !== TStatus.MIN"
             :process="proStore.currentProcess" />
         <MenuDial v-click-outside="appStore.superMenu = false" />
         <div class="absolute bottom-20 left-2 p-2">

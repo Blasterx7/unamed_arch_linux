@@ -23,11 +23,11 @@ function setWindow(tab: string)
     <div class="flex w-full">
         <div class="w-1/3 px-2 space-y-4 py-4">
             <v-list class="bg-transparent">
-                <v-list-item @click="setWindow(tab.component)" :prepend-icon="tab.icon" v-for="tab in tabs" class="text-left w-full" variant="text">
+                <v-list-item v-for="tab in tabs" :key="tab.name" :prepend-icon="tab.icon" class="text-left w-full" variant="text" @click="setWindow(tab.component)">
                     {{ tab.name }}
                 </v-list-item>
             </v-list>
         </div>
-        <component class="h-full overflow-auto select-none" :is="currentTab" />
+        <component :is="currentTab" class="h-full overflow-auto select-none" />
     </div>
 </template>
