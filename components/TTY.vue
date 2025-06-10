@@ -36,15 +36,13 @@ const handleCommand = () => {
   
   if (command === '') {
     output.value = [...output.value, ''];
-  }
-
-  if ((commands.value as Record<string, string>)[command]) {
+  } else if (commands.value[command]) { // Changed this line to 'else if'
     output.value = [...output.value, commands.value[command]];
   } else {
     output.value = [...output.value, `Command not found: ${command}`];
   }
 
-  input.value = '';
+  input.value = ''; // Ensure input is cleared
 };
 </script>
 

@@ -1,14 +1,19 @@
-import { TStatus } from "~/shared/types";
-import { v4 as uuidv4 } from 'uuid';
+import { TStatus } from "~/shared/types"; // Keep existing imports
+import { v4 as uuidv4 } from 'uuid'; // Keep existing imports
+import { useProcessStore } from '~/stores/process.store'; // Ensure useProcessStore is imported
+import { useAppStore } from '~/stores/app.store'; // Explicitly import useAppStore
+import type { IProcess } from '~/shared/models'; // Ensure IProcess is imported
 
 export const useApplication = () => {
-    const proStore = useProcessStore()
-    const appStore = useAppStore()
+    const proStore = useProcessStore();
+    const appStore = useAppStore();
 
     function launchApp(app: any) {
-        appStore.superMenu = !appStore.superMenu
+        appStore.superMenu = !appStore.superMenu;
         if (proStore.currentProcess !== null) {
-            proStore.addProcess(proStore.currentProcess)
+            if (!proStore.processes.value.find(p => p.id === proStore.currentProcess!.id)) {
+                 proStore.addProcess(proStore.currentProcess);
+            }
     
             proStore.setCurrentProcess({
                 id: app.name.toLowerCase() + '-' + uuidv4(),
@@ -24,7 +29,7 @@ export const useApplication = () => {
                 },
                 created: new Date().toISOString(),
                 updated: new Date().toISOString()
-            })
+            } as IProcess);
     
         } else {
             proStore.setCurrentProcess({
@@ -41,24 +46,53 @@ export const useApplication = () => {
                 },
                 created: new Date().toISOString(),
                 updated: new Date().toISOString()
-            })
+            } as IProcess);
         }
     }
 
     function toogleOnFocus(id: string) {
-        const current = proStore.processes.findIndex((process) => process.id === id)
-        const currentProcess = proStore.currentProcess
-        proStore.processes.forEach((process, index) => {
-            process.key = index
-            if (process.id === id) {
-                proStore.processes[current] = currentProcess ?? process
-                proStore.setCurrentProcess(process)
+        if (proStore.currentProcess?.id === id) {
+            return;
+        }
+
+        let targetProcess: IProcess | null = null;
+        let targetProcessOriginatesFromProcessesArray = false;
+
+        const targetIndexInProcesses = proStore.processes.value.findIndex(p => p.id === id);
+
+        if (targetIndexInProcesses !== -1) {
+            targetProcess = proStore.processes.value[targetIndexInProcesses];
+            targetProcessOriginatesFromProcessesArray = true;
+        } else if (proStore.currentProcess?.id === id) {
+            targetProcess = proStore.currentProcess;
+        }
+
+        if (!targetProcess) {
+            console.error(`Process with id ${id} not found for focus.`);
+            return;
+        }
+
+        const oldCurrentProcess = proStore.currentProcess;
+
+        proStore.setCurrentProcess(targetProcess);
+
+        let newProcessesArray = [...proStore.processes.value];
+
+        if (targetProcessOriginatesFromProcessesArray) {
+            newProcessesArray.splice(targetIndexInProcesses, 1);
+        }
+
+        if (oldCurrentProcess && oldCurrentProcess.id !== targetProcess.id) {
+            if (!newProcessesArray.some(p => p.id === oldCurrentProcess!.id)) {
+                 newProcessesArray.push(oldCurrentProcess);
             }
-        })
+        }
+
+        proStore.processes.value = newProcessesArray;
     }
 
     return {
         toogleOnFocus,
         launchApp
-    }
-}
+    };
+};

@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia'
-import type { IProgram } from '~/shared/models'
+import type { IProgram, IProcess } from '~/shared/models' // Added IProcess
 
+// Define IGroupedProcess interface
+interface IGroupedProcess { name: string; number: number; pro: IProcess[]; }
 
 export const useAppStore = defineStore('app', () => {
     const superMenu = shallowRef(false)
     const notifMenu = shallowRef(false)
+    const selectedAppGroup = shallowRef<IGroupedProcess | null>(null); // Added new state
     const search = ref('')
     const isRestarted = ref(false)
     const appSize = ref({
@@ -50,6 +53,16 @@ export const useAppStore = defineStore('app', () => {
         })
     })
 
+    function toggleAppGroupOptions(group: IGroupedProcess) {
+        if (selectedAppGroup.value?.name === group.name && showOptions.value) {
+            selectedAppGroup.value = null;
+            showOptions.value = false; // Hide options when deselecting or toggling off
+        } else {
+            selectedAppGroup.value = group;
+            showOptions.value = true;  // Show options when selecting a new group
+        }
+    }
+
     return {
         isRestarted,
         poweroff_pro,
@@ -60,5 +73,7 @@ export const useAppStore = defineStore('app', () => {
         applis,
         showOptions,
         appSize,
+        selectedAppGroup, // Exposed new state
+        toggleAppGroupOptions, // Exposed new action
     }
 })

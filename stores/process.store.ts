@@ -8,8 +8,6 @@ export const useProcessStore = defineStore('process', () => {
 
     const currentProcess = shallowRef<IProcess | null>(null)
 
-    const acParsedAppInArray = shallowRef()
-
     const parsedApp = computed(() => {
         const grouped = processes.value.reduce((acc: { [key: string]: { number: number, pro: IProcess[] } }, curr) => {
             if (!acc[curr.name]) {
@@ -50,39 +48,48 @@ export const useProcessStore = defineStore('process', () => {
     });
 
     function setStatutNormal(id: string) {
-        const index = processes.value.findIndex((p) => {
-            return p.id === id
-        })
-
-        if (index > 0) {
-            processes.value[index].status = TStatus.NORM
-            processes.value[index].key = 1
+        if (!id) {
+            console.warn("setStatutNormal called with an empty or null id.");
+            return;
         }
-        else {
-            if (currentProcess.value && currentProcess.value.id === id) {
-                currentProcess.value.status = TStatus.NORM
-                currentProcess.value.key = 1
-            }
+        const indexInProcesses = processes.value.findIndex((p) => p.id === id);
+
+        if (indexInProcesses > -1) { // Corrected index check
+            processes.value[indexInProcesses].status = TStatus.NORM;
+            processes.value[indexInProcesses].key = 1; // Retaining original key assignment logic
+        }
+        else if (currentProcess.value && currentProcess.value.id === id) {
+            currentProcess.value.status = TStatus.NORM;
+            currentProcess.value.key = 1; // Retaining original key assignment logic
+        } else {
+            // Optional: console.warn(`setStatutNormal: Process with id ${id} not found.`);
+            // Decided to keep it silent if not found, as original code was also silent.
         }
     }
 
     function setStatutMin(id: string) {
-        const instance = getCurrentInstance()
-        const index = processes.value.findIndex((p) => {
-            return p.id === id
-        })
-
-        if (index > 0) {
-            processes.value[index].status = TStatus.MIN
-            processes.value[index].key = 1
-            instance?.emit('update:processes', processes.value)
+        if (!id) {
+            console.warn("setStatutMin called with an empty or null id.");
+            return;
         }
-        else {
-            if (currentProcess.value && currentProcess.value.id === id) {
-                currentProcess.value.status = TStatus.MIN
-                currentProcess.value.key = 1
-                instance?.emit('update:currentProcess', currentProcess.value)
-            }
+        const indexInProcesses = processes.value.findIndex((p) => p.id === id);
+
+        if (indexInProcesses > -1) { // Corrected index check
+            processes.value[indexInProcesses].status = TStatus.MIN;
+            processes.value[indexInProcesses].key = 1; // Retaining original key assignment logic
+            // Removed instance?.emit(...) call
+        }
+        else if (currentProcess.value && currentProcess.value.id === id) {
+            currentProcess.value.status = TStatus.MIN;
+            currentProcess.value.key = 1; // Retaining original key assignment logic
+            // Removed instance?.emit(...) call
+            // Note: Further logic might be needed here or in a calling function
+            // to move a minimized currentProcess to the background processes list
+            // and select a new currentProcess. This fix addresses only the
+            // immediate issues of index check and emit removal.
+        } else {
+            // Optional: console.warn(`setStatutMin: Process with id ${id} not found.`);
+            // Decided to keep it silent if not found.
         }
     }
 
@@ -107,17 +114,26 @@ export const useProcessStore = defineStore('process', () => {
     }
 
     function removeProcess(id: string) {
-        const index = processes.value.findIndex((process) => process.id === id)
-        if (index > -1) {
-            processes.value.splice(index, 1)
+        if (!id) {
+            console.warn("removeProcess called with an empty or null id.");
             return;
         }
 
-        if (processes.value.length > 0) {
+        const oldProcesses = processes.value;
+        // Filter out the process to be removed. This creates a new array.
+        processes.value = oldProcesses.filter(process => process.id !== id);
+
+        // Check if the current process was the one removed
+        if (currentProcess.value?.id === id) {
+            currentProcess.value = null; // Set to null first
+        }
+
+        // If currentProcess is now null (either it was removed or was already null),
+        // and there are processes remaining in the list,
+        // set the last one in the list as the new currentProcess.
+        // This ensures an active window is prioritized if available.
+        if (currentProcess.value === null && processes.value.length > 0) {
             currentProcess.value = processes.value[processes.value.length - 1];
-            processes.value.splice((processes.value.length - 1), 1);
-        } else {
-            currentProcess.value = null;
         }
     }
 
@@ -125,7 +141,6 @@ export const useProcessStore = defineStore('process', () => {
         processes,
         currentProcess,
         parsedAppInArray,
-        acParsedAppInArray,
         getProcesses,
         setStatutNormal,
         setStatutMin,
