@@ -16,12 +16,12 @@ function deleteP(id: string) {
 
 <template>
     <div class="p-4 text-white">
-        <div class="text-4xl tracking-widest font-bold">
+        <div class="text-2xl tracking-widest font-bold">
             Tâches en cours d'exécution
         </div>
         <div>
             <div>
-                <div class="text-xl">
+                <div class="text-lg">
                     - Tâche courante
                 </div>
                 <div
@@ -37,7 +37,7 @@ function deleteP(id: string) {
                 </div>
             </div>
             <div>
-                <div class="text-xl">
+                <div class="text-lg">
                     - Tâche secondaires
                 </div>
                 <div v-if="procesStore.processes.length > 0">

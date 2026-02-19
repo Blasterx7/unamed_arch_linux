@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="text-white">
+  <div class="text-white text-sm">
     <div v-if="appStore.poweroff_pro.isPoweringOff" class="absolute z-20 flex flex-col justify-center items-center text-4xl font-bold bg-black h-full w-full">
       <div class="mb-10">
         {{ appStore.poweroff_pro.message }}

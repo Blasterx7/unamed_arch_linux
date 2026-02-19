@@ -18,6 +18,7 @@
     "@nuxt/ui": "2.19.2",
     "@nuxtjs/device": "3.2.4",
     "@nuxtjs/google-fonts": "3.2.0",
+    "@nuxtjs/supabase": "^2.0.4",
     "@nuxtjs/tailwindcss": "6.12.2",
     "@pinia/nuxt": "^0.8.0",
     "@vueuse/core": "^14.2.1",
@@ -30,7 +31,8 @@
     "vue": "latest",
     "vue-draggable-resizable": "^3.0.0",
     "vue-router": "latest",
-    "vue-writer": "^2.0.2"
+    "vue-writer": "^2.0.2",
+    "vue3-sfc-loader": "^0.9.5"
   },
   "devDependencies": {
     "@hypernym/nuxt-anime": "^2.1.1",

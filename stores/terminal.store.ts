@@ -73,8 +73,17 @@ export const useTerminalStore = defineStore('terminal', () => {
             return createStdout(`cat: ${file}: No such file or directory`);
         },
         "clear": () => {
-            // Simulation
-            return createStdout('---- Screen Cleared ----');
+            // Returning nothing or undefined often signals a clear in some implementations, 
+            // but if not supported, we can simulate a big spacer or just print a message.
+            // Since we can't easily access the component state from here to empty the history,
+            // we'll try returning a special marker if vue-command supports it, or just a clear message.
+            // NOTE: vue-command doesn't natively support clearing from the return value in standard mode without customization.
+            // As a fallback, we return a "Clear" message that looks distinct.
+            return createStdout('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[Screen Cleared]');
+        },
+        "reset": () => {
+            window.location.reload();
+            return createStdout("System Resetting...");
         },
         "whoami": () => createStdout("alexis"),
         "date": () => createStdout(new Date().toString()),
@@ -83,7 +92,8 @@ Available commands:
   ls          List directory contents
   cd [dir]    Change directory
   cat [file]  Print file content
-  clear       Clear the terminal screen
+  clear       Simulate screen clear
+  reset       Reset/Reload the system
   whoami      Print current user
   date        Print system date
   neofetch    Display system info

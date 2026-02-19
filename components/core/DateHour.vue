@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="fixed bottom-4 right-4 h-12 px-4 flex items-center space-x-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-lg text-white font-medium z-40 transition-all hover:bg-white/20">
+    <div class="fixed bottom-4 right-4 h-12 px-4 flex items-center space-x-3 bg-[#1a1b26] border border-white/10 rounded-xl shadow-lg text-white font-medium z-40 transition-all hover:bg-white/10">
         <div v-ripple class="cursor-default select-none text-sm tracking-wide">
             {{ hour }} <span class="mx-1 opacity-50">|</span> {{ date }}
         </div>
