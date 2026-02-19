@@ -21,9 +21,9 @@ function uptimize(id: string)
 }
 </script>
 <template>
-    <v-card v-if="appStore.showOptions && process" width="300px" class="rounded-lg bg-secondary-100">
-        <div class="flex space-x-4 items-center py-4 overflow-auto">
-            <div v-for="item in app?.pro" :key="item.id" class="backdrop-blur-lg w-24 h-16 select-none flex flex-col items-center" @click="uptimize(item.id)">
+    <v-card v-if="appStore.showOptions && process" class="rounded-lg bg-[#1a1b26] border border-white/10 w-[220px]">
+        <div class="flex space-x-2 items-center py-2 px-2 overflow-x-auto custom-scrollbar">
+            <div v-for="item in app?.pro" :key="item.id" class="w-16 h-14 select-none flex flex-col items-center justify-center rounded hover:bg-white/5 cursor-pointer text-white/80 hover:text-white transition-colors" @click="uptimize(item.id)">
                 <v-icon>{{ item.icon }}</v-icon>
                 <span>{{ item.name }}</span>
             </div>

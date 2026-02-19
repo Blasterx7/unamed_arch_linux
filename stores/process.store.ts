@@ -67,21 +67,28 @@ export const useProcessStore = defineStore('process', () => {
     }
 
     function setStatutMin(id: string) {
-        const instance = getCurrentInstance()
         const index = processes.value.findIndex((p) => {
             return p.id === id
         })
 
-        if (index > 0) {
-            processes.value[index].status = TStatus.MIN
-            processes.value[index].key = 1
-            instance?.emit('update:processes', processes.value)
+        if (index > -1) {
+            // Create a new array reference to trigger reactivity
+            const newProcesses = [...processes.value]
+            newProcesses[index] = {
+                ...newProcesses[index],
+                status: TStatus.MIN,
+                key: 1
+            }
+            processes.value = newProcesses
         }
         else {
             if (currentProcess.value && currentProcess.value.id === id) {
-                currentProcess.value.status = TStatus.MIN
-                currentProcess.value.key = 1
-                instance?.emit('update:currentProcess', currentProcess.value)
+                // Update current process directly
+                currentProcess.value = {
+                    ...currentProcess.value,
+                    status: TStatus.MIN,
+                    key: 1
+                }
             }
         }
     }

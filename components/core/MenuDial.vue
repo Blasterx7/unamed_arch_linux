@@ -3,34 +3,58 @@ const appStore = useAppStore()
 const { launchApp } = useApplication()
 </script>
 <template>
-    <v-card v-if="appStore.superMenu" class="position-absolute pa-6 bottom-24 left-4" width="600" height="600">
-        <div class="font-bold text-primary-100 text-lg my-2">
-            My Applications
+    <div class="fixed bottom-24 left-4 w-[320px] h-[400px] bg-[#1a1b26] border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50">
+        <!-- Header -->
+        <div class="p-4 border-b border-white/10">
+            <div class="text-white font-bold text-lg tracking-wide">
+                Applications
+            </div>
+            <v-text-field
+                v-model="appStore.search"
+                class="mt-3"
+                prepend-inner-icon="mdi-magnify"
+                placeholder="Rechercher..."
+                variant="outlined"
+                density="compact"
+                hide-details
+                bg-color="rgba(255,255,255,0.05)"
+                theme="dark"
+                rounded="lg"
+            />
         </div>
-        <hr>
-        <v-text-field
-v-model="appStore.search" class="w-full my-4" prepend-inner-icon="mdi-magnify" type="search"
-            placeholder="Search for an application" outlined dense clearable/>
-        <div class="h-[300px] overflow-auto grid grid-cols-3 gap-4">
-            <div
-v-for="app in appStore.applis" :key="app.name"
-                v-ripple
-                class="hover:text-primary-100 h-[100px] duration-200 ease-in-out transition-colors p-5 flex justify-center flex-col items-center select-none col-span-1" @click="launchApp(app)">
-                <v-icon :icon="app.icon"/>
-                <div>
-                    {{ app.name }}
+
+        <!-- App Grid -->
+        <div class="flex-1 overflow-y-auto p-4 custom-scrollbar">
+            <div class="grid grid-cols-3 gap-3">
+                <div
+                    v-for="app in appStore.applis" 
+                    :key="app.name"
+                    v-ripple
+                    class="flex flex-col items-center justify-center p-3 rounded-xl hover:bg-white/10 transition-all cursor-pointer group space-y-2" 
+                    @click="launchApp(app)"
+                >
+                    <v-icon :icon="app.icon" size="32" class="text-white/80 group-hover:text-white group-hover:scale-110 transition-all duration-300"/>
+                    <div class="text-xs text-center text-white/70 group-hover:text-white font-medium truncate w-full">
+                        {{ app.name }}
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="flex justify-between mt-10">
+
+        <!-- Footer -->
+        <div class="p-4 bg-white/5 border-t border-white/10 flex justify-between items-center">
             <Power />
-            <v-avatar
-color="grey" image="https://images.pexels.com/photos/8638618/pexels-photo-8638618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            <div 
+                v-ripple
+                class="p-2 rounded-full hover:bg-white/10 cursor-pointer transition-colors"
                 @click="launchApp({
-                name: 'Settings',
-                icon: 'mdi-cog',
-                components: 'Settings',
-            })"/>
+                    name: 'Settings',
+                    icon: 'mdi-cog',
+                    components: 'Settings',
+                })"
+            >
+                <v-icon icon="mdi-cog" color="white" />
+            </div>
         </div>
-    </v-card>
+    </div>
 </template>

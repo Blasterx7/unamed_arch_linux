@@ -29,18 +29,20 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="flex justify-between font-bold w-1/4 px-3 bg-secondary-100 text-lg rounded-lg">
-        <div v-ripple class="my-auto p-2 select-none text-sm">
-            {{ hour }} | {{ date }}
+    <div class="fixed bottom-4 right-4 h-12 px-4 flex items-center space-x-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-lg text-white font-medium z-40 transition-all hover:bg-white/20">
+        <div v-ripple class="cursor-default select-none text-sm tracking-wide">
+            {{ hour }} <span class="mx-1 opacity-50">|</span> {{ date }}
         </div>
-        <div v-ripple class="my-auto p-2 rounded-lg">
-            <UtilsIcon />
+        
+        <div class="h-4 w-[1px] bg-white/20"></div>
+
+        <div v-ripple class="p-1.5 rounded-full hover:bg-white/10 cursor-pointer transition-colors">
+            <UtilsIcon class="w-4 h-4" />
         </div>
-        <div v-ripple class="my-auto rounded-full select-none" @click="notif_dialog = !notif_dialog">
-            <div class="absolute text-sm text-secondary-100 mx-2 my-1.5">
-                52
-            </div>
-            <NotifAvatarIcon />
+        
+        <div v-ripple class="relative p-1.5 rounded-full hover:bg-white/10 cursor-pointer transition-colors" @click="notif_dialog = !notif_dialog">
+             <div v-if="true" class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border border-black/20"></div>
+            <NotifAvatarIcon class="w-4 h-4" />
         </div>
     </div>
 </template>

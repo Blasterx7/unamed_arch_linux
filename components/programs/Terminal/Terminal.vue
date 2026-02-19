@@ -6,9 +6,11 @@ const termStore = useTerminalStore()
 </script>
 
 <template>
-    <vue-command hide-bar :commands="termStore.commands">
-        <template #prompt>
-            {{  termStore.prompt  }}
-        </template>
-    </vue-command>
+    <div class="text-white h-full">
+        <vue-command hide-bar :commands="termStore.commands">
+            <template #prompt>
+                {{  termStore.prompt  }}
+            </template>
+        </vue-command>
+    </div>
 </template>

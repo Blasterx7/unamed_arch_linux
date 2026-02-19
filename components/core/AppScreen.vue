@@ -18,7 +18,7 @@ const error = {
         <Window
 v-if="proStore.currentProcess && proStore.currentProcess.status !== TStatus.MIN"
             :process="proStore.currentProcess" />
-        <MenuDial v-click-outside="appStore.superMenu = false" />
+        <MenuDial v-if="appStore.superMenu" v-click-outside="() => appStore.superMenu = false" />
         <div class="absolute bottom-20 left-2 p-2">
             <OptionApp :process="proStore.acParsedAppInArray ?? error" />
         </div>

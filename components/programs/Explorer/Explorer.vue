@@ -45,7 +45,7 @@ function setWindow(tab: string)
 }
 </script>
 <template>
-    <div class="flex w-full">
+    <div class="flex w-full text-white">
         <div class="w-1/3 px-2 space-y-4 py-4">
             <v-list class="bg-transparent">
                 <v-list-item v-for="tab in tabs" :key="tab.name" :prepend-icon="tab.icon" class="text-left w-full" variant="text" @click="setWindow(tab.component)">

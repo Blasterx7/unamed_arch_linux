@@ -1,17 +1,22 @@
 <script setup lang="ts">
+import { useEventListener } from '@vueuse/core'
+
 const appStore = useAppStore()
 const circularModel = ref(20)
 
+const updateSize = () => {
+  appStore.appSize.height = window.innerHeight
+  appStore.appSize.width = window.innerWidth
+}
+
 onMounted(() => {
-  setInterval(() => {
-    appStore.appSize.height = window.innerHeight
-    appStore.appSize.width = window.innerWidth
-  }, 1000);
+  updateSize() // Initial size
+  useEventListener(window, 'resize', updateSize)
 })
 </script>
 
 <template>
-  <div>
+  <div class="text-white">
     <div v-if="appStore.poweroff_pro.isPoweringOff" class="absolute z-20 flex flex-col justify-center items-center text-4xl font-bold bg-black h-full w-full">
       <div class="mb-10">
         {{ appStore.poweroff_pro.message }}

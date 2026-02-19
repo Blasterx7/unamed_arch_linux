@@ -15,7 +15,7 @@ function deleteP(id: string) {
 </script>
 
 <template>
-    <div class="p-4">
+    <div class="p-4 text-white">
         <div class="text-4xl tracking-widest font-bold">
             Tâches en cours d'exécution
         </div>
